@@ -628,7 +628,7 @@ function initFilters() {
 
       cards.forEach(card => {
         const categories = card.getAttribute("data-categories").split(" ");
-        
+
         if (filterValue === "all" || categories.includes(filterValue)) {
           card.style.display = "flex";
           // Subtle fade-in transition
@@ -652,13 +652,13 @@ function initFilters() {
 function initModals() {
   const projectModal = document.getElementById("project-modal");
   const resumeModal = document.getElementById("resume-modal");
-  
+
   const modalCloseBtn = document.getElementById("modal-close-btn");
   const modalOverlayClose = document.getElementById("modal-overlay-close");
-  
+
   const resumeCloseBtn = document.getElementById("resume-close-btn");
   const resumeOverlayClose = document.getElementById("resume-overlay-close");
-  
+
   const viewResumeBtn = document.getElementById("view-resume-btn");
   const modalBodyContent = document.getElementById("modal-body-content");
 
@@ -692,7 +692,7 @@ function initModals() {
     card.addEventListener("click", () => {
       const projId = card.getAttribute("data-id");
       const project = projectsData.find(p => p.id === projId);
-      
+
       if (project) {
         populateProjectModal(project, modalBodyContent);
         projectModal.classList.add("active");
@@ -705,7 +705,7 @@ function initModals() {
 function populateProjectModal(project, container) {
   // Generate tech list badges
   const techHTML = project.tech.map(t => `<span class="badge">${t}</span>`).join(" ");
-  
+
   // Generate stats cards
   const statsHTML = project.metrics.map(m => `
     <div class="modal-stat-card">
@@ -858,14 +858,14 @@ function initContactForm() {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
+
     // Disable inputs & show sending state
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
     feedback.style.display = "block";
     feedback.textContent = "Sending message...";
     feedback.className = "form-feedback-message";
-    
+
     // Gather form values
     const formData = {
       name: document.getElementById("form-name").value,
@@ -883,36 +883,36 @@ function initContactForm() {
       },
       body: JSON.stringify(formData)
     })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error("Unable to send message.");
-    })
-    .then(data => {
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message";
-      
-      feedback.textContent = "Thank you! Your message has been sent successfully. Tanvi will get back to you shortly.";
-      feedback.className = "form-feedback-message success";
-      
-      // Auto-hide feedback after 6 seconds
-      setTimeout(() => {
-        feedback.style.display = "none";
-      }, 6000);
-    })
-    .catch(error => {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message";
-      
-      feedback.textContent = "Oops! There was a problem sending your message. Please try again or contact me directly.";
-      feedback.className = "form-feedback-message error";
-      
-      setTimeout(() => {
-        feedback.style.display = "none";
-      }, 6000);
-    });
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Unable to send message.");
+      })
+      .then(data => {
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+
+        feedback.textContent = "Thank you! Your message has been sent successfully. Tanvi will get back to you shortly.";
+        feedback.className = "form-feedback-message success";
+
+        // Auto-hide feedback after 6 seconds
+        setTimeout(() => {
+          feedback.style.display = "none";
+        }, 6000);
+      })
+      .catch(error => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+
+        feedback.textContent = "Oops! There was a problem sending your message. Please try again or contact me directly.";
+        feedback.className = "form-feedback-message error";
+
+        setTimeout(() => {
+          feedback.style.display = "none";
+        }, 6000);
+      });
   });
 }
 

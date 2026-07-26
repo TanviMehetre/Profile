@@ -862,9 +862,34 @@ function initContactForm() {
     // Disable inputs & show sending state
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
+    feedback.style.display = "block";
+    feedback.textContent = "Sending message...";
+    feedback.className = "form-feedback-message";
     
-    // Simulate API request delay
-    setTimeout(() => {
+    // Gather form values
+    const formData = {
+      name: document.getElementById("form-name").value,
+      email: document.getElementById("form-email").value,
+      subject: document.getElementById("form-subject").value,
+      message: document.getElementById("form-message").value
+    };
+
+    // Send via AJAX to FormSubmit
+    fetch("https://formsubmit.co/ajax/tanvi.mehetre03@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Unable to send message.");
+    })
+    .then(data => {
       form.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = "Send Message";
@@ -876,8 +901,18 @@ function initContactForm() {
       setTimeout(() => {
         feedback.style.display = "none";
       }, 6000);
-
-    }, 1500);
+    })
+    .catch(error => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+      
+      feedback.textContent = "Oops! There was a problem sending your message. Please try again or contact me directly.";
+      feedback.className = "form-feedback-message error";
+      
+      setTimeout(() => {
+        feedback.style.display = "none";
+      }, 6000);
+    });
   });
 }
 

@@ -92,32 +92,38 @@
 
                     <!-- Background Cosmic Celestial Glow & Nebula Field -->
                     <circle cx="250" cy="250" r="235" fill="url(#nebulaGlow)" class="svg-glow-bg" />
-                    
+
                     <!-- Celestial Astronomical Orbit Rings & Constellations -->
-                    <circle cx="250" cy="250" r="230" stroke="#cd9a62" stroke-width="1.2" stroke-dasharray="4 8" opacity="0.45" class="svg-orbit-ring-outer" />
-                    <circle cx="250" cy="250" r="185" stroke="#a3b18a" stroke-width="1.5" stroke-dasharray="1 5 10 5" opacity="0.6" class="svg-orbit-ring-inner" />
-                    <circle cx="250" cy="250" r="135" stroke="#588157" stroke-width="1.8" stroke-dasharray="8 4" opacity="0.7" class="svg-orbit-ring-mid" />
-                    
-                    <path d="M 250 20 A 230 230 0 0 1 480 250" stroke="url(#svgGrad)" stroke-width="3" stroke-linecap="round" class="svg-arc-path" />
+                    <circle cx="250" cy="250" r="230" stroke="#cd9a62" stroke-width="1.2" stroke-dasharray="4 8"
+                        opacity="0.45" class="svg-orbit-ring-outer" />
+                    <circle cx="250" cy="250" r="185" stroke="#a3b18a" stroke-width="1.5" stroke-dasharray="1 5 10 5"
+                        opacity="0.6" class="svg-orbit-ring-inner" />
+                    <circle cx="250" cy="250" r="135" stroke="#588157" stroke-width="1.8" stroke-dasharray="8 4"
+                        opacity="0.7" class="svg-orbit-ring-mid" />
+
+                    <path d="M 250 20 A 230 230 0 0 1 480 250" stroke="url(#svgGrad)" stroke-width="3"
+                        stroke-linecap="round" class="svg-arc-path" />
 
                     <!-- Astronomical Planetary Nodes & Constellation Stars -->
                     <circle cx="250" cy="20" r="4.5" fill="#cd9a62" class="svg-star-node" />
                     <circle cx="480" cy="250" r="4.5" fill="#a3b18a" class="svg-star-node" />
                     <circle cx="250" cy="480" r="4.5" fill="#588157" class="svg-star-node" />
                     <circle cx="20" cy="250" r="4.5" fill="#cd9a62" class="svg-star-node" />
-                    
+
                     <!-- Constellation Star Rays -->
-                    <path d="M 80 80 L 140 140 M 420 80 L 360 140 M 80 420 L 140 360 M 420 420 L 360 360" stroke="#a3b18a" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5" class="svg-bus-line" />
+                    <path d="M 80 80 L 140 140 M 420 80 L 360 140 M 80 420 L 140 360 M 420 420 L 360 360"
+                        stroke="#a3b18a" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5" class="svg-bus-line" />
                     <circle cx="80" cy="80" r="3" fill="#cd9a62" />
                     <circle cx="420" cy="80" r="3" fill="#a3b18a" />
                     <circle cx="80" cy="420" r="3" fill="#588157" />
                     <circle cx="420" cy="420" r="3" fill="#cd9a62" />
 
                     <!-- PCB Circuit Board Trace Buses -->
-                    <path d="M 50 250 L 165 250 M 450 250 L 335 250 M 250 50 L 250 165 M 250 450 L 250 335" stroke="#cd9a62" stroke-width="1.5" opacity="0.75" />
-                    
+                    <path d="M 50 250 L 165 250 M 450 250 L 335 250 M 250 50 L 250 165 M 250 450 L 250 335"
+                        stroke="#cd9a62" stroke-width="1.5" opacity="0.75" />
+
                     <!-- HARDWARE ENGINEERING CHIP (QFP-64 Micro-Architecture Package) -->
-                    
+
                     <!-- 1. Outer Package Leadframe Pins (Top, Bottom, Left, Right) -->
                     <!-- Top Pins -->
                     <line x1="190" y1="165" x2="190" y2="140" stroke="#cd9a62" stroke-width="2.5" class="svg-pin" />
@@ -160,50 +166,66 @@
                     <line x1="335" y1="310" x2="360" y2="310" stroke="#cd9a62" stroke-width="2.5" class="svg-pin" />
 
                     <!-- 2. Main IC Package Body (Black Epoxied Ceramic Body) -->
-                    <rect x="165" y="165" width="170" height="170" rx="10" fill="#0b1b11" stroke="#cd9a62" stroke-width="3" class="svg-chip-core" />
-                    <rect x="175" y="175" width="150" height="150" rx="6" fill="#112a1a" stroke="#588157" stroke-width="1.2" opacity="0.85" />
-                    
+                    <rect x="165" y="165" width="170" height="170" rx="10" fill="#0b1b11" stroke="#cd9a62"
+                        stroke-width="3" class="svg-chip-core" />
+                    <rect x="175" y="175" width="150" height="150" rx="6" fill="#112a1a" stroke="#588157"
+                        stroke-width="1.2" opacity="0.85" />
+
                     <!-- Pin 1 Index Notch Dot -->
                     <circle cx="182" cy="182" r="4.5" fill="#cd9a62" class="svg-core-dot" />
 
                     <!-- 3. Silicon Die (Interior Micro-Architecture Die) -->
-                    <rect x="195" y="195" width="110" height="110" rx="4" fill="url(#siliconGrad)" stroke="#cd9a62" stroke-width="1.8" />
+                    <rect x="195" y="195" width="110" height="110" rx="4" fill="url(#siliconGrad)" stroke="#cd9a62"
+                        stroke-width="1.8" />
 
                     <!-- Die Functional Micro-Architecture Sub-Blocks -->
                     <!-- Block 1: ALU / Arithmetic Unit -->
-                    <rect x="200" y="200" width="47" height="47" fill="rgba(205,154,98,0.22)" stroke="#cd9a62" stroke-width="1" />
-                    <text x="223.5" y="222" font-size="7.5" fill="#cd9a62" text-anchor="middle" font-weight="800" font-family="monospace">ALU</text>
-                    <line x1="206" y1="232" x2="241" y2="232" stroke="#cd9a62" stroke-width="0.8" stroke-dasharray="2 2" />
-                    <line x1="206" y1="237" x2="241" y2="237" stroke="#cd9a62" stroke-width="0.8" stroke-dasharray="2 2" />
+                    <rect x="200" y="200" width="47" height="47" fill="rgba(205,154,98,0.22)" stroke="#cd9a62"
+                        stroke-width="1" />
+                    <text x="223.5" y="222" font-size="7.5" fill="#cd9a62" text-anchor="middle" font-weight="800"
+                        font-family="monospace">ALU</text>
+                    <line x1="206" y1="232" x2="241" y2="232" stroke="#cd9a62" stroke-width="0.8"
+                        stroke-dasharray="2 2" />
+                    <line x1="206" y1="237" x2="241" y2="237" stroke="#cd9a62" stroke-width="0.8"
+                        stroke-dasharray="2 2" />
 
                     <!-- Block 2: Cache / Registers -->
-                    <rect x="253" y="200" width="47" height="47" fill="rgba(88,129,87,0.28)" stroke="#588157" stroke-width="1" />
-                    <text x="276.5" y="222" font-size="7.5" fill="#a3b18a" text-anchor="middle" font-weight="800" font-family="monospace">CACHE</text>
+                    <rect x="253" y="200" width="47" height="47" fill="rgba(88,129,87,0.28)" stroke="#588157"
+                        stroke-width="1" />
+                    <text x="276.5" y="222" font-size="7.5" fill="#a3b18a" text-anchor="middle" font-weight="800"
+                        font-family="monospace">CACHE</text>
                     <rect x="258" y="228" width="8" height="14" fill="#588157" opacity="0.5" />
                     <rect x="268" y="228" width="8" height="14" fill="#588157" opacity="0.5" />
                     <rect x="278" y="228" width="8" height="14" fill="#588157" opacity="0.5" />
                     <rect x="288" y="228" width="8" height="14" fill="#588157" opacity="0.5" />
 
                     <!-- Block 3: Control Logic / FSM -->
-                    <rect x="200" y="253" width="47" height="47" fill="rgba(88,129,87,0.28)" stroke="#588157" stroke-width="1" />
-                    <text x="223.5" y="275" font-size="7.5" fill="#a3b18a" text-anchor="middle" font-weight="800" font-family="monospace">CTRL</text>
+                    <rect x="200" y="253" width="47" height="47" fill="rgba(88,129,87,0.28)" stroke="#588157"
+                        stroke-width="1" />
+                    <text x="223.5" y="275" font-size="7.5" fill="#a3b18a" text-anchor="middle" font-weight="800"
+                        font-family="monospace">CTRL</text>
                     <circle cx="215" cy="287" r="3" fill="#588157" />
                     <circle cx="232" cy="287" r="3" fill="#588157" />
                     <line x1="218" y1="287" x2="229" y2="287" stroke="#a3b18a" stroke-width="1" />
 
                     <!-- Block 4: Bus Router & I/O -->
-                    <rect x="253" y="253" width="47" height="47" fill="rgba(205,154,98,0.22)" stroke="#cd9a62" stroke-width="1" />
-                    <text x="276.5" y="275" font-size="7.5" fill="#cd9a62" text-anchor="middle" font-weight="800" font-family="monospace">ROUTER</text>
-                    <path d="M 260 285 L 276.5 285 L 293 285" stroke="#cd9a62" stroke-width="1" stroke-dasharray="2 2" />
+                    <rect x="253" y="253" width="47" height="47" fill="rgba(205,154,98,0.22)" stroke="#cd9a62"
+                        stroke-width="1" />
+                    <text x="276.5" y="275" font-size="7.5" fill="#cd9a62" text-anchor="middle" font-weight="800"
+                        font-family="monospace">ROUTER</text>
+                    <path d="M 260 285 L 276.5 285 L 293 285" stroke="#cd9a62" stroke-width="1"
+                        stroke-dasharray="2 2" />
 
                     <!-- Wire Bond Golden Lines (Connecting Die Bond Pads to Package Leads) -->
-                    <path d="M 200 200 L 175 175 M 300 200 L 325 175 M 200 300 L 175 325 M 300 300 L 325 325" stroke="#cd9a62" stroke-width="1.2" opacity="0.9" />
+                    <path d="M 200 200 L 175 175 M 300 200 L 325 175 M 200 300 L 175 325 M 300 300 L 325 325"
+                        stroke="#cd9a62" stroke-width="1.2" opacity="0.9" />
 
                     <!-- Central Core Pulse Dot -->
                     <circle cx="250" cy="250" r="10" fill="#cd9a62" class="svg-core-dot" />
 
                     <!-- Laser Marking Text on Chip Surface -->
-                    <text x="250" y="324" font-size="8" fill="#a3b18a" text-anchor="middle" letter-spacing="1" font-weight="700" font-family="monospace">TM-SOC • RTL QFP64</text>
+                    <text x="250" y="324" font-size="8" fill="#a3b18a" text-anchor="middle" letter-spacing="1"
+                        font-weight="700" font-family="monospace">TM-SOC • RTL QFP64</text>
                 </svg>
             </div>
         </div>
@@ -381,7 +403,8 @@
     <section id="certifications" class="section certifications-section">
         <div class="container">
             <h2 class="section-title">Certifications & AI Credentials</h2>
-            <p class="section-subtitle">Official AI certifications issued by Anthropic, validating expertise in Claude models, prompt engineering, system prompt architecture, and foundational AI frameworks.</p>
+            <p class="section-subtitle">Official AI certifications issued by Anthropic, validating expertise in Claude
+                models, prompt engineering, system prompt architecture, and foundational AI frameworks.</p>
 
             <div class="certs-grid">
 
@@ -392,13 +415,16 @@
                             <i class="fa-solid fa-award"></i>
                         </div>
                         <div class="cert-meta">
-                            <span class="cert-issuer-tag"><i class="fa-solid fa-shield-halved"></i> Anthropic Official Certification</span>
+                            <span class="cert-issuer-tag"><i class="fa-solid fa-shield-halved"></i> Anthropic Official
+                                Certification</span>
                             <h3 class="cert-title">Claude 101</h3>
                         </div>
                     </div>
                     <div class="cert-body">
                         <p class="cert-description">
-                            Validated proficiency in Anthropic's Claude AI architecture, advanced prompt engineering, context window management, system prompt construction, and integrating Claude models into production software applications.
+                            Validated proficiency in Anthropic's Claude AI architecture, advanced prompt engineering,
+                            context window management, system prompt construction, and integrating Claude models into
+                            production software applications.
                         </p>
                         <div class="cert-tags">
                             <span class="badge">Claude AI</span>
@@ -408,7 +434,9 @@
                         </div>
                     </div>
                     <div class="cert-footer">
-                        <button class="btn btn-gold btn-sm view-cert-btn" data-pdf="certificate-kgpqfmmrr8e3-1781473395.pdf" data-title="Claude 101 Certificate — Anthropic">
+                        <button class="btn btn-gold btn-sm view-cert-btn"
+                            data-pdf="certificate-kgpqfmmrr8e3-1781473395.pdf"
+                            data-title="Claude 101 Certificate — Anthropic">
                             <i class="fa-solid fa-eye"></i> View Certificate Inline
                         </button>
                         <a href="certificate-kgpqfmmrr8e3-1781473395.pdf" download class="btn btn-outline-light btn-sm">
@@ -424,13 +452,16 @@
                             <i class="fa-solid fa-brain"></i>
                         </div>
                         <div class="cert-meta">
-                            <span class="cert-issuer-tag"><i class="fa-solid fa-shield-halved"></i> Anthropic Official Certification</span>
+                            <span class="cert-issuer-tag"><i class="fa-solid fa-shield-halved"></i> Anthropic Official
+                                Certification</span>
                             <h3 class="cert-title">AI Fluency: Framework & Foundations</h3>
                         </div>
                     </div>
                     <div class="cert-body">
                         <p class="cert-description">
-                            Mastery of AI framework principles, model evaluation methodologies, foundational machine learning architecture concepts, ethical AI deployment, and enterprise AI transformation strategies.
+                            Mastery of AI framework principles, model evaluation methodologies, foundational machine
+                            learning architecture concepts, ethical AI deployment, and enterprise AI transformation
+                            strategies.
                         </p>
                         <div class="cert-tags">
                             <span class="badge">AI Foundations</span>
@@ -440,7 +471,9 @@
                         </div>
                     </div>
                     <div class="cert-footer">
-                        <button class="btn btn-gold btn-sm view-cert-btn" data-pdf="certificate-br3athv437vn-1781470611.pdf" data-title="AI Fluency: Framework & Foundations Certificate — Anthropic">
+                        <button class="btn btn-gold btn-sm view-cert-btn"
+                            data-pdf="certificate-br3athv437vn-1781470611.pdf"
+                            data-title="AI Fluency: Framework & Foundations Certificate — Anthropic">
                             <i class="fa-solid fa-eye"></i> View Certificate Inline
                         </button>
                         <a href="certificate-br3athv437vn-1781470611.pdf" download class="btn btn-outline-light btn-sm">
@@ -507,7 +540,7 @@
                         professional work experience, leadership roles, and academic projects.
                     </p>
                     <div class="resume-actions">
-                        <a href="Resume_Tanvi_Balram_Mehetre (2).pdf" download class="btn btn-gold btn-large">
+                        <a href="Resume_Tanvi_Balram_Mehetre (3).pdf" download class="btn btn-gold btn-large">
                             <i class="fa-solid fa-file-arrow-down"></i> Download Resume PDF
                         </a>
                         <button id="view-resume-btn" class="btn btn-outline-light btn-large">
@@ -574,16 +607,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-email">Email</label>
-                                <input type="email" id="form-email" name="email" required placeholder="your.email@example.com">
+                                <input type="email" id="form-email" name="email" required
+                                    placeholder="your.email@example.com">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="form-subject">Subject</label>
-                            <input type="text" id="form-subject" name="subject" required placeholder="What is this about?">
+                            <input type="text" id="form-subject" name="subject" required
+                                placeholder="What is this about?">
                         </div>
                         <div class="form-group">
                             <label for="form-message">Message</label>
-                            <textarea id="form-message" name="message" rows="5" required placeholder="How can I help you?"></textarea>
+                            <textarea id="form-message" name="message" rows="5" required
+                                placeholder="How can I help you?"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="form-submit-btn">Send Message</button>
                         <div id="form-feedback" class="form-feedback-message"></div>
@@ -613,7 +649,7 @@
             <div class="modal-body">
                 <h3>Curriculum Vitae Viewer</h3>
                 <div class="pdf-iframe-container">
-                    <iframe src="Resume_Tanvi_Balram_Mehetre (2).pdf" width="100%" height="600px"
+                    <iframe src="Resume_Tanvi_Balram_Mehetre.pdf" width="100%" height="600px"
                         style="border: none;"></iframe>
                 </div>
             </div>

@@ -531,6 +531,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initModals();
   initContactForm();
   initScrollSpy();
+  
+  // Advanced Animation System
+  initHeroParticlesCanvas();
+  initScrollReveal();
+  initAnimatedCounters();
+  init3DTiltEffects();
+  initCursorGlow();
+  initButtonRipples();
 });
 
 // ==========================================================================
@@ -652,12 +660,16 @@ function initFilters() {
 function initModals() {
   const projectModal = document.getElementById("project-modal");
   const resumeModal = document.getElementById("resume-modal");
+  const certModal = document.getElementById("cert-modal");
 
   const modalCloseBtn = document.getElementById("modal-close-btn");
   const modalOverlayClose = document.getElementById("modal-overlay-close");
 
   const resumeCloseBtn = document.getElementById("resume-close-btn");
   const resumeOverlayClose = document.getElementById("resume-overlay-close");
+
+  const certCloseBtn = document.getElementById("cert-close-btn");
+  const certOverlayClose = document.getElementById("cert-overlay-close");
 
   const viewResumeBtn = document.getElementById("view-resume-btn");
   const modalBodyContent = document.getElementById("modal-body-content");
@@ -666,6 +678,7 @@ function initModals() {
   const closeAllModals = () => {
     projectModal.classList.remove("active");
     resumeModal.classList.remove("active");
+    if (certModal) certModal.classList.remove("active");
     document.body.style.overflow = ""; // Re-enable background scrolling
   };
 
@@ -674,6 +687,8 @@ function initModals() {
   modalOverlayClose.addEventListener("click", closeAllModals);
   resumeCloseBtn.addEventListener("click", closeAllModals);
   resumeOverlayClose.addEventListener("click", closeAllModals);
+  if (certCloseBtn) certCloseBtn.addEventListener("click", closeAllModals);
+  if (certOverlayClose) certOverlayClose.addEventListener("click", closeAllModals);
 
   // Close modals on ESC key
   window.addEventListener("keydown", (e) => {
@@ -684,6 +699,27 @@ function initModals() {
   viewResumeBtn.addEventListener("click", () => {
     resumeModal.classList.add("active");
     document.body.style.overflow = "hidden"; // Disable scroll
+  });
+
+  // Open Certificate Modal
+  document.querySelectorAll(".view-cert-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const pdfPath = btn.getAttribute("data-pdf");
+      const pdfTitle = btn.getAttribute("data-title");
+
+      const certIframe = document.getElementById("cert-iframe");
+      const certTitleEl = document.getElementById("cert-modal-title");
+
+      if (certIframe && certTitleEl) {
+        certIframe.src = pdfPath;
+        certTitleEl.textContent = pdfTitle;
+      }
+
+      if (certModal) {
+        certModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+    });
   });
 
   // Open Project Details Modal on Card Click
@@ -988,4 +1024,382 @@ function closeLightbox() {
     lightbox.classList.remove("active");
     setTimeout(() => lightbox.remove(), 300);
   }
+}
+
+// ==========================================================================
+// Interactive Hero Particles Canvas
+// ==========================================================================
+// ==========================================================================
+// Interactive Hero Celestial Astronomical Stardust Canvas
+// ==========================================================================
+function initHeroParticlesCanvas() {
+  const canvas = document.getElementById("hero-particles-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = (canvas.width = canvas.parentElement.clientWidth);
+  let height = (canvas.height = canvas.parentElement.clientHeight);
+
+  let mouse = { x: null, y: null, radius: 144 };
+
+  window.addEventListener("resize", () => {
+    if (!canvas.parentElement) return;
+    width = canvas.width = canvas.parentElement.clientWidth;
+    height = canvas.height = canvas.parentElement.clientHeight;
+  });
+
+  const heroSection = document.getElementById("home");
+  if (heroSection) {
+    heroSection.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    heroSection.addEventListener("mouseleave", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+  }
+
+  // Astronomical Twinkling Stars & Stardust
+  const starCount = width < 768 ? 45 : 90;
+  const stars = [];
+
+  const starColors = [
+    "rgba(205, 154, 98, ",  // Gold Starlight
+    "rgba(223, 185, 141, ", // Warm Gold
+    "rgba(163, 177, 138, ", // Celestial Sage
+    "rgba(244, 241, 234, ", // Pure Starlight White
+    "rgba(88, 129, 87, "    // Nebula Green
+  ];
+
+  for (let i = 0; i < starCount; i++) {
+    stars.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() < 0.15 ? Math.random() * 2.2 + 1.2 : Math.random() * 1.5 + 0.5,
+      color: starColors[Math.floor(Math.random() * starColors.length)],
+      alpha: Math.random() * 0.6 + 0.2,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      twinkleFactor: Math.random() * Math.PI
+    });
+  }
+
+  // Shooting Meteor System
+  let meteor = null;
+  function spawnMeteor() {
+    meteor = {
+      x: Math.random() * width * 0.8,
+      y: Math.random() * height * 0.4,
+      length: Math.random() * 80 + 50,
+      speed: Math.random() * 8 + 6,
+      angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2, // ~45 degree streak
+      alpha: 1
+    };
+  }
+
+  setInterval(() => {
+    if (!meteor && Math.random() < 0.6) {
+      spawnMeteor();
+    }
+  }, 4500);
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    // 1. Draw Shooting Meteor if active
+    if (meteor) {
+      ctx.beginPath();
+      const endX = meteor.x + Math.cos(meteor.angle) * meteor.length;
+      const endY = meteor.y + Math.sin(meteor.angle) * meteor.length;
+
+      const grad = ctx.createLinearGradient(meteor.x, meteor.y, endX, endY);
+      grad.addColorStop(0, `rgba(244, 241, 234, ${meteor.alpha})`);
+      grad.addColorStop(0.3, `rgba(205, 154, 98, ${meteor.alpha * 0.7})`);
+      grad.addColorStop(1, "rgba(205, 154, 98, 0)");
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.moveTo(meteor.x, meteor.y);
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+
+      meteor.x += Math.cos(meteor.angle) * meteor.speed;
+      meteor.y += Math.sin(meteor.angle) * meteor.speed;
+      meteor.alpha -= 0.015;
+
+      if (meteor.alpha <= 0 || meteor.x > width || meteor.y > height) {
+        meteor = null;
+      }
+    }
+
+    // 2. Draw Astronomical Stars & Constellations
+    for (let i = 0; i < stars.length; i++) {
+      let p = stars[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      // Twinkle pulsation
+      p.twinkleFactor += p.twinkleSpeed;
+      let currentAlpha = p.alpha + Math.sin(p.twinkleFactor) * 0.25;
+      currentAlpha = Math.max(0.1, Math.min(1, currentAlpha));
+
+      // Mouse Gravitational Lens / Stardust Attraction
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = mouse.x - p.x;
+        let dy = mouse.y - p.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(244, 241, 234, ${0.18 * (1 - dist / mouse.radius)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw Celestial Star
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + currentAlpha + ")";
+      ctx.fill();
+
+      // Outer Starlight Halo on Larger Stars
+      if (p.radius > 2) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + (currentAlpha * 0.25) + ")";
+        ctx.fill();
+      }
+
+      // Connect Constellation Lines
+      for (let j = i + 1; j < stars.length; j++) {
+        let p2 = stars[j];
+        let dx = p.x - p2.x;
+        let dy = p.y - p2.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(163, 177, 138, ${0.22 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.6;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+
+// ==========================================================================
+// Scroll Reveal Animations
+// ==========================================================================
+function initScrollReveal() {
+  const selectors = [
+    ".section-title",
+    ".section-subtitle",
+    ".about-bio",
+    ".experience-timeline",
+    ".skill-category",
+    ".metric-glance-card",
+    ".project-card",
+    ".cert-card",
+    ".contact-info",
+    ".contact-form-wrapper",
+    ".education-card",
+    ".resume-info"
+  ];
+
+  selectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach((el, index) => {
+      el.classList.add("reveal");
+      if (selector === ".skill-category" || selector === ".metric-glance-card" || selector === ".project-card" || selector === ".cert-card") {
+        const delayClass = `delay-${(index % 4) + 1}`;
+        el.classList.add(delayClass);
+      }
+    });
+  });
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -40px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// ==========================================================================
+// Animated Counter Numbers
+// ==========================================================================
+function initAnimatedCounters() {
+  const glanceBar = document.querySelector(".metrics-glance-bar");
+  if (!glanceBar) return;
+
+  let animated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        animateGlanceNumbers();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(glanceBar);
+
+  function animateGlanceNumbers() {
+    const cards = document.querySelectorAll(".metric-glance-card");
+    cards.forEach(card => {
+      const numEl = card.querySelector(".metric-glance-number");
+      if (!numEl) return;
+      const rawText = numEl.textContent.trim();
+
+      if (rawText.includes("1.04M")) {
+        counterUp(numEl, 0, 1.04, 1800, (v) => `${v.toFixed(2)}M+`);
+      } else if (rawText.includes("%")) {
+        const target = parseFloat(rawText);
+        counterUp(numEl, 0, target, 1800, (v) => `${v.toFixed(1)}%`);
+      } else if (rawText.includes("10cm")) {
+        numEl.style.opacity = "0";
+        numEl.style.transform = "scale(0.5)";
+        setTimeout(() => {
+          numEl.style.transition = "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
+          numEl.style.opacity = "1";
+          numEl.style.transform = "scale(1)";
+        }, 100);
+      } else {
+        const val = parseInt(rawText, 10);
+        if (!isNaN(val)) {
+          counterUp(numEl, 0, val, 1500, (v) => `${Math.round(v)}`);
+        }
+      }
+    });
+  }
+
+  function counterUp(element, start, end, duration, formatFn) {
+    let startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      let progress = Math.min((timestamp - startTime) / duration, 1);
+      let currentVal = start + (end - start) * easeOutCubic(progress);
+      element.textContent = formatFn(currentVal);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.textContent = formatFn(end);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function easeOutCubic(x) {
+    return 1 - Math.pow(1 - x, 3);
+  }
+}
+
+// ==========================================================================
+// 3D Magnetic Tilt Effects
+// ==========================================================================
+function init3DTiltEffects() {
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+  const tiltElements = document.querySelectorAll(".project-card, .skill-category, .metric-glance-card, .education-card, .cert-card");
+
+  tiltElements.forEach(el => {
+    el.addEventListener("mousemove", (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+
+      el.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
+    });
+
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+    });
+  });
+}
+
+// ==========================================================================
+// Ambient Cursor Glow Follower
+// ==========================================================================
+function initCursorGlow() {
+  const glow = document.getElementById("cursor-glow");
+  if (!glow) return;
+
+  let mouseX = -500, mouseY = -500;
+  let currentX = -500, currentY = -500;
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    glow.style.opacity = "1";
+  });
+
+  window.addEventListener("mouseleave", () => {
+    glow.style.opacity = "0";
+  });
+
+  function render() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+    glow.style.left = `${currentX}px`;
+    glow.style.top = `${currentY}px`;
+    requestAnimationFrame(render);
+  }
+
+  render();
+}
+
+// ==========================================================================
+// Button Ripple Effect
+// ==========================================================================
+function initButtonRipples() {
+  document.querySelectorAll(".btn, .filter-btn").forEach(button => {
+    button.addEventListener("click", function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement("span");
+      ripple.className = "ripple";
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
+      this.appendChild(ripple);
+
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
 }
